@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block title %}Manage ChatGPT Links - Monthly Reflection Diary{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h2 class="text-center mb-4">Your ChatGPT Shared Links</h2>
+                <p class="text-center mb-4">
+                    Add links to your shared ChatGPT conversations to create more personalized diary questions.
+                </p>
+                
+                <div class="mb-4">
+                    <form action="{{ url_for('add_chat_link') }}" method="POST" class="mb-3">
+                        <div class="row g-3">
+                            <div class="col-md-5">
+                                <input type="text" class="form-control" name="title" placeholder="Link Title (optional)" aria-label="Link Title">
+                            </div>
+                            <div class="col-md-5">
+                                <input type="url" class="form-control" name="url" placeholder="ChatGPT Shared Link URL" aria-label="ChatGPT URL" required>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary w-100">Add Link</button>
+                            </div>
+                        </div>
+                    </form>
+                    
+                    <div class="alert alert-info">
+                        <h5><i class="fas fa-info-circle me-2"></i>How to share ChatGPT conversations</h5>
+                        <ol class="mb-0">
+                            <li>In ChatGPT, click the "Share" button at the top-right of any conversation</li>
+                            <li>Choose "Copy Link" to copy the URL to your clipboard</li>
+                            <li>Paste the URL in the form above and add a title (optional)</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                {% if chat_links %}
+                    <h4 class="mb-3">Your Current Links</h4>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">URL</th>
+                                    <th scope="col">Added On</th>
+                                    <th scope="col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for link in chat_links %}
+                                <tr>
+                                    <td>{{ link.title or "Untitled Chat" }}</td>
+                                    <td>
+                                        <a href="{{ link.url }}" target="_blank" class="text-truncate d-inline-block" style="max-width: 250px;">
+                                            {{ link.url }}
+                                        </a>
+                                    </td>
+                                    <td>{{ link.created_at.strftime('%Y-%m-%d') }}</td>
+                                    <td>
+                                        <form action="{{ url_for('delete_chat_link', link_id=link.id) }}" method="POST" class="d-inline">
+                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this link?');">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <div class="alert alert-warning">
+                        <p class="mb-0">You haven't added any ChatGPT conversation links yet. Add your first link using the form above!</p>
+                    </div>
+                {% endif %}
+                
+                <div class="text-center mt-4">
+                    <a href="{{ url_for('index') }}" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left me-2"></i>Back to Home
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card shadow-sm mt-4">
+            <div class="card-body">
+                <h4>How This Works</h4>
+                <p>
+                    When you add links to your ChatGPT conversations, our system uses them to:
+                </p>
+                <ul>
+                    <li>Analyze your interests, goals, and frequent topics</li>
+                    <li>Generate more personalized reflection questions relevant to your journey</li>
+                    <li>Create a more meaningful diary experience customized to your life</li>
+                </ul>
+                <p class="text-muted small">
+                    <i class="fas fa-lock me-1"></i> Your conversation links are private and only used to personalize your diary questions.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

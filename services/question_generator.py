@@ -3,18 +3,24 @@ import os
 import random
 import logging
 import calendar
+import trafilatura
 from datetime import datetime
 
-def generate_questions(month, year):
+from app import db
+from models import User, ChatLink
+
+def generate_questions(month, year, user_id=None):
     """
     Generate reflection questions for each day of the month.
     
-    This is a placeholder implementation that uses sample questions.
-    In the future, this will use OpenAI's API to generate questions based on conversation history.
+    This function uses a combination of sample questions and, if available and requested,
+    personalized questions based on the user's ChatGPT conversation history.
     
     Args:
         month (int): The month (1-12)
         year (int): The year
+        user_id (int, optional): The ID of the user for whom to generate personalized questions.
+            If provided, the user's ChatGPT links will be used for personalization.
         
     Returns:
         dict: A dictionary mapping day numbers to questions
@@ -49,6 +55,15 @@ def generate_questions(month, year):
         
         # Combine all questions
         all_questions = general_questions + monthly_questions + seasonal_questions
+        
+        # Add personalized questions if user_id is provided
+        personalized_questions = []
+        if user_id:
+            personalized_questions = get_personalized_questions(user_id, month, season)
+            if personalized_questions:
+                # Add the personalized questions to the mix, giving them priority
+                # by adding them multiple times to increase their chances of being selected
+                all_questions = personalized_questions * 3 + all_questions
         
         # Ensure we have enough questions
         if len(all_questions) < days_in_month:

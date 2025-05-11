@@ -11,6 +11,7 @@ class User(UserMixin, db.Model):
     password_hash = db.Column(db.String(256))
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     diaries = db.relationship('Diary', backref='author', lazy='dynamic')
+    chat_links = db.relationship('ChatLink', backref='user', lazy='dynamic')
     
     def __init__(self, **kwargs):
         super(User, self).__init__(**kwargs)
@@ -41,6 +42,16 @@ class DiaryEntry(db.Model):
     
     def __init__(self, **kwargs):
         super(DiaryEntry, self).__init__(**kwargs)
+
+class ChatLink(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    url = db.Column(db.String(500), nullable=False)
+    title = db.Column(db.String(200))
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    
+    def __init__(self, **kwargs):
+        super(ChatLink, self).__init__(**kwargs)
 
 @login_manager.user_loader
 def load_user(user_id):

@@ -32,6 +32,11 @@
                     </li>
                     {% if current_user.is_authenticated %}
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('chat_links') }}">
+                                <i class="fas fa-comments me-1"></i>ChatGPT Links
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
                         </li>
                     {% else %}

@@ -6,7 +6,7 @@ from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash
 
 from app import app, db
-from models import User, Diary, DiaryEntry
+from models import User, Diary, DiaryEntry, ChatLink
 from services.pdf_generator import generate_diary_pdf
 from services.question_generator import generate_questions
 
@@ -143,3 +143,48 @@ def get_diary(diary_id):
         'year': diary.year,
         'entries': entries
     })
+
+# ChatGPT Links Management
+@app.route('/chat-links')
+@login_required
+def chat_links():
+    user_links = ChatLink.query.filter_by(user_id=current_user.id).order_by(ChatLink.created_at.desc()).all()
+    return render_template('chat_links.html', chat_links=user_links, now=datetime.now())
+
+@app.route('/chat-links/add', methods=['POST'])
+@login_required
+def add_chat_link():
+    url = request.form.get('url')
+    title = request.form.get('title')
+    
+    if not url:
+        flash('URL is required', 'danger')
+        return redirect(url_for('chat_links'))
+    
+    # Validate the URL format (basic check)
+    if not url.startswith('https://chat.openai.com/share/'):
+        flash('Invalid ChatGPT share URL. URL must start with https://chat.openai.com/share/', 'danger')
+        return redirect(url_for('chat_links'))
+    
+    # Create new chat link
+    chat_link = ChatLink(url=url, title=title, user_id=current_user.id)
+    db.session.add(chat_link)
+    db.session.commit()
+    
+    flash('ChatGPT conversation link added successfully', 'success')
+    return redirect(url_for('chat_links'))
+
+@app.route('/chat-links/delete/<int:link_id>', methods=['POST'])
+@login_required
+def delete_chat_link(link_id):
+    link = ChatLink.query.get_or_404(link_id)
+    
+    # Check if the link belongs to the current user
+    if link.user_id != current_user.id:
+        abort(403)
+    
+    db.session.delete(link)
+    db.session.commit()
+    
+    flash('ChatGPT conversation link deleted successfully', 'success')
+    return redirect(url_for('chat_links'))

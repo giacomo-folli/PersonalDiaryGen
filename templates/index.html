@@ -12,6 +12,13 @@
                 <p class="lead text-center">
                     Create a personalized monthly diary with AI-generated reflection questions for each day.
                 </p>
+                {% if current_user.is_authenticated %}
+                <p class="text-center">
+                    <a href="{{ url_for('chat_links') }}" class="btn btn-sm btn-outline-primary">
+                        <i class="fas fa-comments me-1"></i>Add ChatGPT Links for Better Personalization
+                    </a>
+                </p>
+                {% endif %}
                 
                 {% if current_user.is_authenticated %}
                     <div class="month-selector p-4 mt-4">
