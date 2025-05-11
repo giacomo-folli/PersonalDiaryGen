@@ -84,8 +84,8 @@ def generate_diary():
             flash('Invalid month or year', 'danger')
             return redirect(url_for('index'))
         
-        # Generate questions for the month
-        questions = generate_questions(month, year)
+        # Generate questions for the month, passing the user_id for personalization
+        questions = generate_questions(month, year, user_id=current_user.id)
         
         # Create diary in database
         diary = Diary(month=month, year=year, user_id=current_user.id)

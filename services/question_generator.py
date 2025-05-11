@@ -3,11 +3,12 @@ import os
 import random
 import logging
 import calendar
-import trafilatura
 from datetime import datetime
 
 from app import db
 from models import User, ChatLink
+from services.chat_extractor import extract_chat_content
+from services.openai_service import generate_personalized_questions
 
 def generate_questions(month, year, user_id=None):
     """
@@ -81,3 +82,50 @@ def generate_questions(month, year, user_id=None):
         logging.error(f"Error generating questions: {str(e)}")
         # Fallback to basic questions if there's an error
         return {day: f"What was meaningful about today? (Day {day})" for day in range(1, 32)}
+        
+def get_personalized_questions(user_id, month, season):
+    """
+    Get personalized reflection questions based on the user's ChatGPT conversation links.
+    
+    Args:
+        user_id (int): The ID of the user
+        month (int): The month (1-12)
+        season (str): The season (winter, spring, summer, fall)
+        
+    Returns:
+        list: A list of personalized reflection questions
+    """
+    try:
+        # Get the user's chat links
+        chat_links = ChatLink.query.filter_by(user_id=user_id).order_by(ChatLink.created_at.desc()).limit(5).all()
+        
+        if not chat_links:
+            logging.info(f"No chat links found for user {user_id}")
+            return []
+            
+        # Extract content from each link
+        all_content = []
+        for link in chat_links:
+            content = extract_chat_content(link.url)
+            if content:
+                all_content.append(content)
+        
+        if not all_content:
+            logging.warning(f"Could not extract content from any chat links for user {user_id}")
+            return []
+            
+        # Combine all content into a single string
+        combined_content = "\n\n".join(all_content)
+        
+        # Generate personalized questions
+        personalized_questions = generate_personalized_questions(
+            conversation_content=combined_content,
+            month=month,
+            season=season,
+            count=15  # Generate a few extra for variety
+        )
+        
+        return personalized_questions
+    except Exception as e:
+        logging.error(f"Error getting personalized questions: {str(e)}")
+        return []
