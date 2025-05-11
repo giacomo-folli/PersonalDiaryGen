@@ -1,0 +1,150 @@
+{
+  "general": [
+    "What made you smile today?",
+    "What challenged you today and what did you learn from it?",
+    "What are you grateful for today?",
+    "Describe a moment today when you felt fully present.",
+    "What did you do today to take care of yourself?",
+    "How did you connect with others today?",
+    "What is something you accomplished today, no matter how small?",
+    "What surprised you today?",
+    "If you could relive one moment from today, what would it be and why?",
+    "What is one thing you learned or realized today?",
+    "How did you show kindness today—to yourself or to someone else?",
+    "What brought you peace today?",
+    "What's something you're looking forward to tomorrow?",
+    "What's one step you took today toward a goal?",
+    "What's a question you've been asking yourself lately?",
+    "How did you use your strengths today?",
+    "What was a moment of beauty you noticed today?",
+    "What made you laugh today?",
+    "What are you curious about right now?",
+    "How did your body feel today?",
+    "What inspired you today?",
+    "What's a small detail you noticed today that you might usually overlook?",
+    "What's something you did today that was truly for you?",
+    "What brought you energy today? What drained your energy?",
+    "How did your values guide your actions today?",
+    "What's something you're proud of from today?",
+    "What would you like to remember about today?",
+    "What are you letting go of today?",
+    "What was the most meaningful conversation you had today?",
+    "What's one positive thought you had today?"
+  ],
+  "monthly": {
+    "1": [
+      "What new beginnings are you embracing this month?",
+      "What intentions are you setting for the year ahead?",
+      "How does the fresh start of a new year make you feel?",
+      "What habits from last year would you like to leave behind?",
+      "What's one area of your life you'd like to transform this year?"
+    ],
+    "2": [
+      "How can you show more love to yourself this month?",
+      "What relationships are you most grateful for right now?",
+      "How does the shortest month of the year affect how you think about time?",
+      "What passion project would you like to dedicate more energy to?",
+      "What's warming your heart during this cold season?"
+    ],
+    "3": [
+      "What is beginning to emerge or 'spring forth' in your life?",
+      "How do you feel as the days grow longer?",
+      "What seeds (literal or metaphorical) are you planting this month?",
+      "What area of your life needs renewed energy?",
+      "How can you balance the changeable energy of this time of year?"
+    ],
+    "4": [
+      "What brings you a sense of renewal this month?",
+      "How do the April showers in your life lead to future growth?",
+      "What's something playful you can embrace this month?",
+      "How are you adapting to the changes around you?",
+      "What dormant part of yourself is ready to bloom?"
+    ],
+    "5": [
+      "How can you find more joy in this beautiful month?",
+      "What abundance are you witnessing in your life?",
+      "How are you honoring the growth you're experiencing?",
+      "What does the fullness of spring teach you about your own life?",
+      "How can you bring more color and vibrancy into your daily experience?"
+    ],
+    "6": [
+      "As we reach the year's midpoint, how are you progressing with your intentions?",
+      "What areas of your life feel most in balance right now?",
+      "How are you celebrating the light and warmth of this season?",
+      "What adventures are calling to you this month?",
+      "How can you maximize the energy of the longest days of the year?"
+    ],
+    "7": [
+      "What gives you a sense of freedom in your life?",
+      "How do you plan to savor the heart of summer?",
+      "What simple pleasures are you enjoying most right now?",
+      "How does the heat of summer affect your energy and mood?",
+      "What playful activities bring out your inner child?"
+    ],
+    "8": [
+      "What has been your greatest joy this summer?",
+      "As summer begins to wind down, what are you most grateful for from this season?",
+      "What adventures did you have or wish you had this summer?",
+      "How are you preparing for the transition into a new season?",
+      "What habits or activities would you like to maintain as the seasons change?"
+    ],
+    "9": [
+      "What are you harvesting from the seeds you've planted earlier this year?",
+      "How do you feel about the balance of giving and receiving in your life?",
+      "As routines return, what structures support you best?",
+      "What lessons has this year taught you so far?",
+      "How can you maintain a sense of ease while moving into a busier season?"
+    ],
+    "10": [
+      "What are you ready to release as the leaves fall?",
+      "How does the changing landscape reflect changes in your own life?",
+      "What comfort practices help you embrace the growing darkness?",
+      "What aspects of your life feel most colorful right now?",
+      "How are you preparing yourself for the more introspective season ahead?"
+    ],
+    "11": [
+      "What practices or traditions help you cultivate gratitude?",
+      "As the year begins to close, what accomplishments are you most proud of?",
+      "How do you stay connected to your inner light as the days grow shorter?",
+      "What are you gathering close as the world grows colder?",
+      "How can you practice generosity in meaningful ways this month?"
+    ],
+    "12": [
+      "How do you honor endings and transitions in your life?",
+      "What gifts (literal or metaphorical) have you received this year?",
+      "What lights up your heart during this darkest time of year?",
+      "How have you grown or transformed over the past twelve months?",
+      "What hopes are you carrying into the new year?"
+    ]
+  },
+  "seasonal": {
+    "winter": [
+      "How does the quiet of winter speak to you?",
+      "What inner work feels most important during this introspective season?",
+      "How do you find coziness and comfort during the coldest months?",
+      "What lies dormant within you, preparing to emerge in a new season?",
+      "How can you honor the natural rhythm of rest that winter brings?"
+    ],
+    "spring": [
+      "What's awakening within you this spring?",
+      "How are you welcoming the return of color and light?",
+      "What aspects of yourself are ready to blossom?",
+      "How does the energy of spring inspire your creativity?",
+      "What new beginnings are you embracing this season?"
+    ],
+    "summer": [
+      "How are you embracing the expansiveness of summer?",
+      "What brings you alive during this vibrant season?",
+      "How does the abundance of sunlight affect your energy and mood?",
+      "What adventure is summer calling you toward?",
+      "How can you savor the fullness of this season?"
+    ],
+    "fall": [
+      "What are you harvesting from the seeds you've planted this year?",
+      "What wisdom comes with the cooling temperatures and earlier sunsets?",
+      "How do you find beauty in the process of letting go?",
+      "What comforts help you transition into the more introspective seasons?",
+      "How does autumn's transformation mirror changes in your own life?"
+    ]
+  }
+}

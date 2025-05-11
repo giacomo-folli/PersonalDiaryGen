@@ -1,0 +1,107 @@
+/* Custom styles to supplement Bootstrap */
+
+/* Paper styling for PDF */
+.diary-page {
+    background-color: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 30px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+/* Print-specific styles */
+@media print {
+    body {
+        background-color: white;
+    }
+    
+    .diary-page {
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        margin: 0;
+        page-break-after: always;
+    }
+    
+    .no-print {
+        display: none;
+    }
+}
+
+/* Month selector styling */
+.month-selector {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* Question box styling */
+.question-box {
+    background-color: #f8f9fa;
+    border-left: 3px solid #4e73df;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    border-radius: 0 5px 5px 0;
+}
+
+/* Answer area styling */
+.answer-area {
+    min-height: 200px;
+    background-image: linear-gradient(transparent 0, transparent calc(1.5rem - 1px), #e6e6e6 calc(1.5rem - 1px), #e6e6e6 1.5rem, transparent 1.5rem);
+    background-size: 100% 1.5rem;
+    line-height: 1.5rem;
+    padding: 1.5rem 0;
+    width: 100%;
+}
+
+/* Date display */
+.date-display {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Footer */
+.diary-footer {
+    text-align: center;
+    color: #6c757d;
+    margin-top: 2rem;
+    font-size: 0.8rem;
+}
+
+/* Page numbers */
+.page-number {
+    text-align: right;
+    color: #6c757d;
+    margin-top: 1rem;
+    font-size: 0.8rem;
+}
+
+/* Cover page */
+.cover-page {
+    text-align: center;
+    padding: 100px 0;
+}
+
+.cover-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.cover-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 3rem;
+    color: #6c757d;
+}
+
+.cover-date {
+    font-size: 1.8rem;
+    margin-bottom: 3rem;
+}
+
+.cover-name {
+    font-size: 1.2rem;
+    margin-top: 5rem;
+}

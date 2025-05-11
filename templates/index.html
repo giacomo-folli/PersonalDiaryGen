@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% block title %}Monthly Reflection Diary{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h1 class="text-center mb-4">Monthly Reflection Diary Generator</h1>
+                
+                <p class="lead text-center">
+                    Create a personalized monthly diary with AI-generated reflection questions for each day.
+                </p>
+                
+                {% if current_user.is_authenticated %}
+                    <div class="month-selector p-4 mt-4">
+                        <form id="diary-form" action="{{ url_for('generate_diary') }}" method="POST">
+                            <div class="row g-3 align-items-center mb-4">
+                                <div class="col-md-6">
+                                    <label for="month" class="form-label">Month</label>
+                                    <select class="form-select" id="month" name="month" required>
+                                        <option value="1">January</option>
+                                        <option value="2">February</option>
+                                        <option value="3">March</option>
+                                        <option value="4">April</option>
+                                        <option value="5">May</option>
+                                        <option value="6">June</option>
+                                        <option value="7">July</option>
+                                        <option value="8">August</option>
+                                        <option value="9">September</option>
+                                        <option value="10">October</option>
+                                        <option value="11">November</option>
+                                        <option value="12">December</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="year" class="form-label">Year</label>
+                                    <select class="form-select" id="year" name="year" required>
+                                        {% for year in range(2023, 2031) %}
+                                            <option value="{{ year }}">{{ year }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="d-grid gap-2">
+                                <button type="button" class="btn btn-secondary" onclick="previewDiary()">
+                                    <i class="fas fa-eye me-2"></i>Preview
+                                </button>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-file-pdf me-2"></i>Generate PDF
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Preview Modal -->
+                    <div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="previewModalLabel">Diary Preview</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <h3 class="text-center mb-4" id="previewMonthYear">Month Year</h3>
+                                    <p>Your diary will include:</p>
+                                    <ul>
+                                        <li>A beautiful cover page</li>
+                                        <li>31 days (or appropriate number for the month)</li>
+                                        <li>Unique AI-generated reflection questions for each day</li>
+                                        <li>Space to write your answers</li>
+                                        <li>Clean, printable layout</li>
+                                    </ul>
+                                    <p class="fst-italic">
+                                        Note: This is a preview of what will be generated. The actual PDF will contain
+                                        tailored questions based on the month and seasonal themes.
+                                    </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" onclick="document.getElementById('diary-form').submit()">Generate PDF</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="alert alert-info my-4">
+                        <p class="mb-0">Please <a href="{{ url_for('login') }}">login</a> or <a href="{{ url_for('signup') }}">sign up</a> to generate your reflection diary.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="card shadow-sm mt-4">
+            <div class="card-body">
+                <h3 class="card-title">How It Works</h3>
+                <div class="row mt-4">
+                    <div class="col-md-4 text-center mb-3">
+                        <i class="fas fa-calendar-alt fa-3x mb-3 text-primary"></i>
+                        <h5>Select a Month</h5>
+                        <p>Choose which month and year you want to create a reflection diary for.</p>
+                    </div>
+                    <div class="col-md-4 text-center mb-3">
+                        <i class="fas fa-brain fa-3x mb-3 text-primary"></i>
+                        <h5>AI-Generated Questions</h5>
+                        <p>Our system creates thoughtful questions tailored to the month and season.</p>
+                    </div>
+                    <div class="col-md-4 text-center mb-3">
+                        <i class="fas fa-print fa-3x mb-3 text-primary"></i>
+                        <h5>Print & Reflect</h5>
+                        <p>Download your PDF, print it, and take time each day to reflect and write.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
