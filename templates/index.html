@@ -99,29 +99,31 @@
                 {% endif %}
             </div>
         </div>
-        
-        <div class="card shadow-sm mt-4">
-            <div class="card-body">
-                <h3 class="card-title">How It Works</h3>
-                <div class="row mt-4">
-                    <div class="col-md-4 text-center mb-3">
-                        <i class="fas fa-calendar-alt fa-3x mb-3 text-primary"></i>
-                        <h5>Select a Month</h5>
-                        <p>Choose which month and year you want to create a reflection diary for.</p>
-                    </div>
-                    <div class="col-md-4 text-center mb-3">
-                        <i class="fas fa-brain fa-3x mb-3 text-primary"></i>
-                        <h5>AI-Generated Questions</h5>
-                        <p>Our system creates thoughtful questions tailored to the month and season.</p>
-                    </div>
-                    <div class="col-md-4 text-center mb-3">
-                        <i class="fas fa-print fa-3x mb-3 text-primary"></i>
-                        <h5>Print & Reflect</h5>
-                        <p>Download your PDF, print it, and take time each day to reflect and write.</p>
+
+        {% if current_user.is_authenticated %}{% else %}
+            <div class="card shadow-sm mt-4">
+                <div class="card-body">
+                    <h3 class="card-title">How It Works</h3>
+                    <div class="row mt-4">
+                        <div class="col-md-4 text-center mb-3">
+                            <i class="fas fa-calendar-alt fa-3x mb-3 text-primary"></i>
+                            <h5>Select a Month</h5>
+                            <p>Choose which month and year you want to create a reflection diary for.</p>
+                        </div>
+                        <div class="col-md-4 text-center mb-3">
+                            <i class="fas fa-brain fa-3x mb-3 text-primary"></i>
+                            <h5>AI-Generated Questions</h5>
+                            <p>Our system creates thoughtful questions tailored to the month and season.</p>
+                        </div>
+                        <div class="col-md-4 text-center mb-3">
+                            <i class="fas fa-print fa-3x mb-3 text-primary"></i>
+                            <h5>Print & Reflect</h5>
+                            <p>Download your PDF, print it, and take time each day to reflect and write.</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        {% endif %}
     </div>
 </div>
 {% endblock %}
