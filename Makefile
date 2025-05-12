@@ -1,7 +1,8 @@
 # Makefile for Docker tasks
 
-IMAGE_NAME = personal-diary
-CONTAINER_NAME = personal-diary-container
+USERNAME = giacomofolli
+IMAGE_NAME = reflectiv
+CONTAINER_NAME = reflectiv-container
 PORT = 5000
 
 .PHONY: build run stop logs clean test
@@ -9,6 +10,9 @@ PORT = 5000
 # Build the Docker image
 build:
 	docker build -t $(IMAGE_NAME):latest .
+
+build-prod:
+	docker build -t ${USERNAME}/$(IMAGE_NAME):latest .
 
 # Run the Docker container
 run:
