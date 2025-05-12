@@ -1,2 +1,9 @@
+# Environment files
 .env
-Dockerfile
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.env

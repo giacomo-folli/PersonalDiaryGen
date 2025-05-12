@@ -31,8 +31,7 @@ RUN pip install --no-cache-dir -r dependencies.txt
 COPY . .
 
 # Create a non-root user to run the app
-RUN useradd -m appuser
-RUN chown -R appuser:appuser /app
+RUN useradd -m appuser && chown -R appuser:appuser /app
 USER appuser
 
 # Create volume for SQLite database (if using SQLite)
