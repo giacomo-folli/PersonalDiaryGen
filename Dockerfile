@@ -27,8 +27,9 @@ COPY dependencies.txt .
 # Install Python dependencies
 RUN pip install --no-cache-dir -r dependencies.txt
 
-# Copy project files
+# Copy project files, excluding the SQLite database
 COPY . .
+RUN rm -f /app/instance/diary.db
 
 # Create a non-root user to run the app
 RUN useradd -m appuser && chown -R appuser:appuser /app

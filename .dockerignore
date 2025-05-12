@@ -51,6 +51,9 @@ Dockerfile
 docker-compose.yml
 .dockerignore
 
+# Ignore the SQLite database file
+instance/diary.db
+
 # Log files
 *.log
 
